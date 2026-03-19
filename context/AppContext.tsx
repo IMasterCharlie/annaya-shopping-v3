@@ -16,6 +16,8 @@ interface AppContextType {
   wishlist:        string[];
   toggleWishlist:  (productId: string) => Promise<void>;
   isWishlisted:    (productId: string) => boolean;
+  lastOrderId:     string | null;
+  setLastOrderId:  (id: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -24,6 +26,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [cart, setCart]               = useState<CartItem[]>([]);
   const [wishlist, setWishlist]       = useState<string[]>([]);
   const [isCartLoading, setCartLoad]  = useState(true);
+  const [lastOrderId, setLastOrderId] = useState<string | null>(null);
 
   // Initialize state from local storage on mount
   useEffect(() => {
@@ -100,6 +103,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     <AppContext.Provider value={{
       cart, addToCart, removeFromCart, updateQuantity, clearCart, isCartLoading,
       wishlist, toggleWishlist, isWishlisted,
+      lastOrderId, setLastOrderId,
     }}>
       {children}
     </AppContext.Provider>

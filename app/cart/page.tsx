@@ -13,7 +13,7 @@ export default function CartPage() {
   const router = useRouter();
 
   const subtotal = cart.reduce((a, i) => a + i.price * i.quantity, 0);
-  const shipping = subtotal > 5000 ? 0 : 150;
+  const shipping = 0;
   const total = subtotal + shipping;
 
 
@@ -80,15 +80,6 @@ export default function CartPage() {
               <span className="text-muted-text">Subtotal</span>
               <span className="font-bold">₹{subtotal.toLocaleString()}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-muted-text">Shipping</span>
-              <span className={`font-bold ${shipping === 0 ? 'text-emerald-600' : ''}`}>
-                {shipping === 0 ? 'FREE' : `₹${shipping}`}
-              </span>
-            </div>
-            {subtotal < 5000 && (
-              <p className="text-xs text-muted-text">Add ₹{(5000 - subtotal).toLocaleString()} more for free shipping!</p>
-            )}
             <div className="h-px bg-luxury-border my-1" />
             <div className="flex justify-between text-lg">
               <span className="font-serif font-bold">Total</span>

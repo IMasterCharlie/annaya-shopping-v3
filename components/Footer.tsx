@@ -39,6 +39,7 @@ export default function Footer() {
       </div>
       <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-luxury-border">
         <p className="text-xs text-muted-text text-center">© {new Date().getFullYear()} Annaya Boutique. All Rights Reserved.</p>
+        <p className="text-xs text-muted-text text-center">Developed by <a href="https://github.com/IMasterCharlie" target="_blank" rel="noreferrer" className="text-sm hover:text-royal-purple transition-colors">Mohammed Mehraj</a></p>
       </div>
     </footer>
   );

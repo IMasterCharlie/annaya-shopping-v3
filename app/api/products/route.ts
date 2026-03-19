@@ -18,10 +18,17 @@ export async function GET(req: NextRequest) {
     const limit = Math.min(rawLimit, 50);
     
     const search   = searchParams.get('search');
+    const ids      = searchParams.get('ids');
 
     const filter: Record<string, any> = {};
     if (category && category !== 'All') filter.category = category;
     if (search)                          filter.$text = { $search: search };
+    if (ids) {
+      const idArray = ids.split(',').filter(id => /^[0-9a-fA-F]{24}$/.test(id));
+      if (idArray.length > 0) {
+        filter._id = { $in: idArray };
+      }
+    }
 
     const sortMap: Record<string, Record<string, 1 | -1>> = {
       'Featured':           { isFeatured: -1, createdAt: -1 },
@@ -47,7 +54,6 @@ export async function GET(req: NextRequest) {
     response.headers.set('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
     return response;
   } catch (err) {
-    console.error('[GET /api/products]', err);
     return NextResponse.json({ message: 'Server error' }, { status: 500 });
   }
 }

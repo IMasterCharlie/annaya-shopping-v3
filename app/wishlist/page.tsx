@@ -18,10 +18,11 @@ export default function WishlistPage() {
       setLoading(false);
       return;
     }
-    fetch('/api/products?limit=100')
+    const ids = wishlist.join(',');
+    fetch(`/api/products?ids=${ids}&limit=100`)
       .then(res => res.json())
       .then(data => {
-        setItems((data.products || []).filter((p: Product) => wishlist.includes(p.id)));
+        setItems(data.products || []);
         setLoading(false);
       })
       .catch(() => setLoading(false));

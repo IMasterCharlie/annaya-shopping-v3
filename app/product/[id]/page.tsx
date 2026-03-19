@@ -34,8 +34,7 @@ export default function ProductPage() {
         setProduct(data.product || null);
         setLoading(false);
       })
-      .catch(err => {
-        console.error(err);
+      .catch(() => {
         setLoading(false);
       });
   }, [id]);
@@ -222,7 +221,7 @@ export default function ProductPage() {
                         <p className="text-base text-muted-text leading-relaxed pt-4">
                           {t === 'Description' ? product.description
                             : t === 'Fabric & Care' ? 'Premium quality fabric. Hand-crafted with care. Dry clean recommended.'
-                              : 'Standard delivery 5–7 business days. Free shipping above ₹5,000.'}
+                              : 'Standard delivery 5–7 business days. Enjoy free shipping on all orders.'}
                         </p>
                       </motion.div>
                     )}

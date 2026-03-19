@@ -59,8 +59,7 @@ annaya-next/
 ├── hooks/
 │   └── useRazorpay.ts
 ├── lib/
-│   ├── mongodb.ts                      ← Mongoose connection with hot-reload cache
-│   └── mockData.ts                     ← Typed product data (matches your DB schema)
+│   └── mongodb.ts                      ← Shared Mongoose connection utility
 ├── models/
 │   ├── Product.ts                      ← Matches existing MongoDB collection
 │   ├── Cart.ts
